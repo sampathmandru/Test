@@ -12,6 +12,7 @@
   "dependencies": {
     "@google-apps/meet": "^0.3.0",
     "@google-cloud/local-auth": "^2.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "google-auth-library": "^9.11.0"
   }

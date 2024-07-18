@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const fs = require('fs').promises;
 const path = require('path');
@@ -11,7 +14,24 @@ const port = process.env.PORT || 3001;
 const SCOPES = ['https://www.googleapis.com/auth/meetings.space.created'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const { google } = require('googleapis');
 
+function getOAuth2Client() {
+  const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+  const { client_secret, client_id, redirect_uris } = credentials.web;
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  
+  const token = JSON.parse(process.env.GOOGLE_TOKEN);
+  oAuth2Client.setCredentials(token);
+  
+  return oAuth2Client;
+}
+
+const oauth2Client = getOAuth2Client();
 async function loadSavedCredentialsIfExist() {
   try {
     const content = await fs.readFile(TOKEN_PATH);
