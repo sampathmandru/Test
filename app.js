@@ -12,6 +12,7 @@ const { auth } = require('google-auth-library');
 const app = express();
 const port = process.env.PORT || 3001;
 const SCOPES = ['https://www.googleapis.com/auth/meetings.space.created'];
+<<<<<<< HEAD
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 const { google } = require('googleapis');
@@ -32,6 +33,12 @@ function getOAuth2Client() {
 }
 
 const oauth2Client = getOAuth2Client();
+=======
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+const token = JSON.parse(process.env.GOOGLE_TOKEN);
+
+// Use these variables instead of reading from files
+>>>>>>> 0db4cb8fe34caa9cc1ce6daa3a6c5e0130ce523b
 async function loadSavedCredentialsIfExist() {
   try {
     const content = await fs.readFile(TOKEN_PATH);
