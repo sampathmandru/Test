@@ -2,19 +2,21 @@
   "name": "googlemeetapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "googleapis": "^105.0.0",
     "@google-apps/meet": "^0.3.0",
     "@google-cloud/local-auth": "^2.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "google-auth-library": "^9.11.0"
+    "google-auth-library": "^9.11.0",
+    "googleapis": "^105.0.0"
   }
 }
