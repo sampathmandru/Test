@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+const cors = require('cors');  // Add this line
 const { SpacesServiceClient } = require('@google-apps/meet').v2;
 const { google } = require('googleapis');
 
@@ -45,7 +46,7 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.send('Express server is running');
 });
-
+app.use(cors());
 app.get('/api/create-meet', async (req, res) => {
   try {
     const meetUrl = await createSpace(oauth2Client);
