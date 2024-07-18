@@ -36,7 +36,13 @@ async function createSpace(authClient) {
   return response[0].meetingUri;
 }
 
+// Redirect root to /api/create-meet
 app.get('/', (req, res) => {
+  res.redirect('/api/create-meet');
+});
+
+// Keep the original root route as a separate endpoint
+app.get('/home', (req, res) => {
   res.send('Express server is running');
 });
 
